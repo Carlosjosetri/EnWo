@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 public class Personaje {
 
     private static final int WITH = 60;
-    private static final int HEIGHT = 90;
+    private static final int HEIGHT = 0;
     int x = 0;
     int xa = 0;
     int y = 500;
@@ -128,26 +128,7 @@ if(bajar==true){
         g.fillRect(x+60, y, WITH, HEIGHT);
     }
 
-    public void keyReleased(KeyEvent e) {
-        xa = 0;
-        ya = 0;
-    }
 
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            xa = -1;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            xa = 1;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            ya = -1;
-        }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            ya = 1;
-        }
-
-    }
 
     public JLabel getlabel() {
         return label;
