@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package newpackage;
+package GameObjects;
 
 import Imagenes.Gui;
 import java.awt.Graphics2D;
@@ -139,7 +139,7 @@ if(bajar==true){
     }
 
     public Rectangle getBounds() {
-        return new Rectangle(x, y, WITH, HEIGHT);
+        return new Rectangle(x+60, y, WITH, HEIGHT);
     }
 
     public JLabel getLabel2() {

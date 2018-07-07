@@ -15,10 +15,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import newpackage.Monitos;
-import newpackage.Personaje;
-import newpackage.ClickListener;
-import newpackage.Escenario;
+import GameObjects.Monitos;
+import GameObjects.Personaje;
+import GameObjects.ClickListener;
+import GameObjects.Escenario;
+import GameObjects.Jefe;
 
 @SuppressWarnings("serial")
 public class Gui extends JFrame {
@@ -26,11 +27,14 @@ public class Gui extends JFrame {
     private JLabel[] labels;
     public ArrayList<Monitos> balls;
     public ArrayList<Escenario> escenario;
-    public Personaje racquet = new Personaje(this);
+    public Personaje Character = new Personaje(this);
+    public Jefe jefe ;
+    public boolean jefevivo=false;
     private Random random;
     public int cont = 1;
     public int y;
     public int vida = 3;
+    public int vidarelativa = 100;
     public boolean rellenar = false;
 
     public Gui() {
@@ -51,10 +55,13 @@ public class Gui extends JFrame {
         this.setResizable(false);// centramos la ventana en la pantalla
         this.setLayout(null);
 
-        labels = new JLabel[30];
+        labels = new JLabel[40];
 
         Container container = getContentPane();
-
+        labels[24] = new JLabel();
+            labels[24].setIcon(new ImageIcon(getClass().getResource("gorilla" + ".gif")));
+           
+            container.add(labels[24]);
         labels[14] = new JLabel();
 
         labels[14].setIcon(new ImageIcon(getClass().getResource("megar" + ".gif")));
@@ -66,20 +73,29 @@ public class Gui extends JFrame {
         labels[0].setIcon(new ImageIcon(getClass().getResource("mega" + ".gif")));
         labels[0].setBounds(10, 400, 200, 200);
         container.add(labels[0]);
-        racquet.setlabel(labels[0]);
-        racquet.setLabel2(labels[14]);
+        Character.setlabel(labels[0]);
+        Character.setLabel2(labels[14]);
         for (int i = 1; i < 10; i++) {
             labels[i] = new JLabel();
             labels[i].setIcon(new ImageIcon(getClass().getResource("mon" + ".gif")));
 
             container.add(labels[i]);
         }
-        for (int i = 11; i < 14; i++) {
+             for (int i = 15; i < 24; i++) {
+            labels[i] = new JLabel();
+            labels[i].setIcon(new ImageIcon(getClass().getResource("vidap" + ".gif")));
+
+            container.add(labels[i]);
+        }
+          
+             
+        for (int i = 37; i < 40; i++) {
             labels[i] = new JLabel();
             labels[i].setIcon(new ImageIcon(getClass().getResource("jungle" + ".jpg")));
             labels[i].setBounds(0, 0, 3000, 600);
             container.add(labels[i]);
         }
+    
 
         // no usamos ningun layout, solo asi podremos dar posiciones a los componentes
         // hacemos que la ventana no sea redimiensionable
@@ -94,26 +110,39 @@ public class Gui extends JFrame {
     }
 
     private void move() {
-        if (System.nanoTime() - Monitos.lastDuckTime >= Monitos.timeBetweenDucks * 5) {
+        if (System.nanoTime() - Monitos.lastDuckTime >= Monitos.timeBetweenDucks *8) {
 
             // Here we create new duck and add it to the array list.
             y = random.nextInt(600);
             labels[cont].setBounds(3432, y, 100, 100);
-            balls.add(new Monitos(this, y, labels[cont]));
+            labels[cont+14].setBounds(2345, y, 200, 200);
+            balls.add(new Monitos(this, y,labels[cont],labels[cont+14]));
 
             cont += 1;
-            System.out.println(cont);
+     
   
             Monitos.lastDuckTime = System.nanoTime();
         }
-        if (cont == 9) {
+        if (cont == 9 && jefevivo==false) {
+            System.out.println("holui");
+            labels[24].setBounds(960, -70, 400, 400);
+            jefe=new Jefe(this,labels[24],960);
+            jefevivo=true;
             cont = 1;
         }
+        if (cont == 9 && jefevivo==true) {
+         
+            cont = 1;
+        }
+        if ( jefevivo==true) {
+         jefe.move();
+        }
+        
 
         if (rellenar == false) {
-            escenario.add(new Escenario(this, 0, labels[11]));
-            escenario.add(new Escenario(this, 600, labels[12]));
-            escenario.add(new Escenario(this, 1200, labels[13]));
+            escenario.add(new Escenario(this, 0, labels[37]));
+            escenario.add(new Escenario(this, 600, labels[38]));
+            escenario.add(new Escenario(this, 1200, labels[39]));
             rellenar = true;
         }
         for (int i = 0; i < escenario.size(); i++) {
@@ -127,12 +156,13 @@ public class Gui extends JFrame {
             // Checks if the duck leaves the screen and remove it if it does.
             if (balls.get(i).x < 0) {
                 balls.get(i).label.setLocation(i, 8000);
+                balls.get(i).golpe.setLocation(i, 8000);
                 balls.remove(i);
             }
 
         }
 
-        racquet.move();
+        Character.move();
     }
 
     @Override
@@ -142,10 +172,14 @@ public class Gui extends JFrame {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         /// POR SI SE QUIERE REVISAR HIT BOX DESCOMENTAR ESTE FRAGMENTO
-        for(int i=0;i<balls.size();i++){
-            balls.get(i).paint(g2d);
-        }
-      racquet.paint(g2d);
+//        for(int i=0;i<balls.size();i++){
+//            balls.get(i).paint(g2d);
+//        }
+//      Character.paint(g2d);
+//if(jefevivo==true){
+//    jefe.paint(g2d);
+//}
+      
     }
 
     public void gameOver() {
@@ -156,7 +190,7 @@ public class Gui extends JFrame {
     public static void main(String[] args) throws InterruptedException {
 
         Gui game = new Gui();
-        game.getContentPane().addMouseListener(new ClickListener(game.racquet));
+        game.getContentPane().addMouseListener(new ClickListener(game.Character));
         game.setVisible(true);
 
         while (true) {
