@@ -13,10 +13,10 @@ import java.awt.event.MouseEvent;
  *
  * @author CARLOS
  */
-public class circleclicklistener extends MouseAdapter{
+public class ClickListener extends MouseAdapter{
 private Personaje raqueta;
 
-    public circleclicklistener(Personaje raqueta) {
+    public ClickListener(Personaje raqueta) {
         this.raqueta = raqueta;
     }
 

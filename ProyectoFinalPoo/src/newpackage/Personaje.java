@@ -5,6 +5,7 @@
  */
 package newpackage;
 
+import Imagenes.Gui;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -14,7 +15,7 @@ import javax.swing.JLabel;
 public class Personaje {
 
     private static final int WITH = 60;
-    private static final int HEIGHT = 10;
+    private static final int HEIGHT = 90;
     int x = 0;
     int xa = 0;
     int y = 500;
@@ -23,11 +24,11 @@ public class Personaje {
     private boolean desplazar;
     private JLabel label;
     private JLabel label2;
-    private Game game;
+    private Gui game;
     public boolean bajar;
     public boolean retroceder;
     public boolean iniciado;
-    public Personaje(Game game) {
+    public Personaje(Gui game) {
         this.game = game;
         desplazar = false;
         bajar=false;
@@ -124,7 +125,7 @@ if(bajar==true){
     }
 
     public void paint(Graphics2D g) {
-        g.fillRect(x, y, WITH, HEIGHT);
+        g.fillRect(x+60, y, WITH, HEIGHT);
     }
 
     public void keyReleased(KeyEvent e) {

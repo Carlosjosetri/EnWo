@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package newpackage;
+package Imagenes;
 
 import java.awt.Container;
 import java.awt.Graphics;
@@ -22,20 +22,24 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import newpackage.Monitos;
+import newpackage.Personaje;
+import newpackage.ClickListener;
+import newpackage.Escenario;
 
 @SuppressWarnings("serial")
-public class Game extends JFrame {
+public class Gui extends JFrame {
 
     private JLabel[] labels;
     public ArrayList<Monitos> balls;
-    public ArrayList<escenario> escenario;
-    Personaje racquet = new Personaje(this);
+    public ArrayList<Escenario> escenario;
+    public Personaje racquet = new Personaje(this);
     private Random random;
     public int cont=1;
     public int y;
     public int vida=3;
     public boolean rellenar=false;
-    public Game() {
+    public Gui() {
         super();                    // usamos el contructor de la clase padre JFrame
         configurarVentana();        // configuramos la ventana
         inicializarComponentes();
@@ -96,7 +100,7 @@ public class Game extends JFrame {
  
 
     private void configurarVentana() {
-        this.setTitle("calculadora");    
+        this.setTitle("EnWo");    
        
 //            this.setUndecorated(true);
 //             Puts the frame to full screen.
@@ -146,7 +150,7 @@ public class Game extends JFrame {
     private void inicializarComponentes() {
         random = new Random(); 
            balls = new ArrayList<Monitos>();
-           escenario = new ArrayList<escenario>();
+           escenario = new ArrayList<Escenario>();
 
     }
 
@@ -186,9 +190,9 @@ public class Game extends JFrame {
 //           Monitos.lastDuckTime2 = System.nanoTime();
 //        }
         if(rellenar==false){
-            escenario.add(new escenario(this,0,labels[11]));
-            escenario.add(new escenario(this,600,labels[12]));
-            escenario.add(new escenario(this,1200,labels[13]));
+            escenario.add(new Escenario(this,0,labels[11]));
+            escenario.add(new Escenario(this,600,labels[12]));
+            escenario.add(new Escenario(this,1200,labels[13]));
             rellenar=true;
         }
         for(int i = 0; i < escenario.size(); i++){
@@ -217,7 +221,11 @@ public class Game extends JFrame {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-            
+        /// POR SI SE QUIERE REVISAR HIT BOX DESCOMENTAR ESTE FRAGMENTO
+//        for(int i=0;i<balls.size();i++){
+//            balls.get(i).paint(g2d);
+//        }
+//      racquet.paint(g2d);
     }
 
     public void gameOver() {
@@ -227,8 +235,8 @@ public class Game extends JFrame {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Game game = new Game();
-        game.getContentPane().addMouseListener(new circleclicklistener(game.racquet));
+        Gui game = new Gui();
+        game.getContentPane().addMouseListener(new ClickListener(game.racquet));
         game.setVisible(true);
 
         while (true) {

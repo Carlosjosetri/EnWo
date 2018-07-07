@@ -5,30 +5,31 @@
  */
 package newpackage;
 
+import Imagenes.Gui;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import javax.swing.JLabel;
 
 public class Monitos {
 	private static final int DIAMETER = 45;
-	int x = 1000;
+	public int x = 1000;
 	int y = 0;
 	int xa = -1;
 	int ya = 1;
-	private Game game;
+	private Gui game;
          public JLabel label;
 public static long timeBetweenDucks = 1000000000L / 2;
 public static long lastDuckTime = 0;
 public static long timeBetweenDucks2 = 1000000000L / 2;
 public static long lastDuckTime2 = 0;
-	public Monitos(Game game,int y,JLabel label) {
+	public Monitos(Gui game,int y,JLabel label) {
             
 		this.game= game;
                 this.y=y;
                 this.label=label;
 	}
 
-	void move() {
+	public void move() {
 		
 		if (x + xa > game.getWidth() - DIAMETER)
                     
@@ -39,6 +40,7 @@ public static long lastDuckTime2 = 0;
 			ya = -1;
 //			y = game.racquet.getTopY() - DIAMETER;
 		if (collision()){
+                    game.vida-=1;
 		game.gameOver();
 		}
            
