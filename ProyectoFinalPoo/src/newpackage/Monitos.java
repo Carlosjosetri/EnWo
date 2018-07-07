@@ -11,7 +11,7 @@ import java.awt.Rectangle;
 import javax.swing.JLabel;
 
 public class Monitos {
-	private static final int DIAMETER = 45;
+	private static final int DIAMETER = 55;
 	public int x = 1000;
 	int y = 0;
 	int xa = -1;

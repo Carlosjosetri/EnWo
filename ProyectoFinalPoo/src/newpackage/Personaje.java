@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 public class Personaje {
 
     private static final int WITH = 60;
-    private static final int HEIGHT = 0;
+    private static final int HEIGHT = 90;
     int x = 0;
     int xa = 0;
     int y = 500;
@@ -24,7 +24,7 @@ public class Personaje {
     private boolean desplazar;
     private JLabel label;
     private JLabel label2;
-    private Gui game;
+    private final Gui game;
     public boolean bajar;
     public boolean retroceder;
     public boolean iniciado;

@@ -142,10 +142,10 @@ public class Gui extends JFrame {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         /// POR SI SE QUIERE REVISAR HIT BOX DESCOMENTAR ESTE FRAGMENTO
-//        for(int i=0;i<balls.size();i++){
-//            balls.get(i).paint(g2d);
-//        }
-//      racquet.paint(g2d);
+        for(int i=0;i<balls.size();i++){
+            balls.get(i).paint(g2d);
+        }
+      racquet.paint(g2d);
     }
 
     public void gameOver() {
