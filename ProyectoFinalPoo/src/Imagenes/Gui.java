@@ -256,6 +256,7 @@ public class Gui extends JFrame {
         if (conttiros >= 35) {
             conttiros = 25;
         }
+        labels[conttiros].setVisible(true);
         return labels[conttiros];
     }
 

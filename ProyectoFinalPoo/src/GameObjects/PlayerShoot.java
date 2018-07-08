@@ -39,7 +39,7 @@ public class PlayerShoot {
         if (collision()) {
             game.jefe.vida -= Damage;
            game.jefe.golpeado=true;
-            
+            label.setVisible(false);
             if (game.jefe.vida <= 0) {
                 game.Victory();
             }
