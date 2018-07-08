@@ -19,16 +19,16 @@ public class PlayerShoot {
     int ya = 1;
     private Gui game;
     public JLabel label;
-
+    private int Damage;
 
     public int flag;
 
-    public PlayerShoot(Gui game, int y, int x, JLabel label) {
+    public PlayerShoot(Gui game, int y, int x, JLabel label,int dano) {
 
         this.game = game;
         this.y = y;
         this.label = label;
-      
+        this.Damage=dano;     
         this.x = x;
 
     }
@@ -37,7 +37,7 @@ public class PlayerShoot {
         x = x + 1;
         label.setLocation(x + 20, y - 100);
         if (collision()) {
-            game.jefe.vida -= 5;
+            game.jefe.vida -= Damage;
            game.jefe.golpeado=true;
             if (game.jefe.vida <= 0) {
                 game.Victory();

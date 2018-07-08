@@ -136,7 +136,7 @@ public class Personaje {
         }
         if (disparar) {
             if (recargar) {
-                disparos.add(new PlayerShoot(getGame(), y, x, getGame().CrearDisparos()));
+                disparos.add(new PlayerShoot(getGame(), y, x, getGame().CrearDisparos(),getGame().Damage));
                
                 disparar = false;
                 recargar = false;

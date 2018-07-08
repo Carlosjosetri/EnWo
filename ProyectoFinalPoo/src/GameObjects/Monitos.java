@@ -36,11 +36,11 @@ public static long lastDuckTime2 = 0;
 		
 		if (x + xa > game.getWidth() - DIAMETER)
                     
-			xa = -1;
+			xa = -3;
 		if (y + ya < 0)
 			ya = 1;
 		if (y + ya > game.getHeight() - DIAMETER)
-			ya = -1;
+			ya = -3;
 //			
 		if (collision()){
                      golpe.setLocation(x + xa-30, y + ya-50);

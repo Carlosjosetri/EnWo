@@ -28,7 +28,7 @@ public class Jefe {
     public static long lastDuckTime2 = 0;
 
     public Jefe(Gui game, JLabel label, int x, JLabel label2) {
-        this.vida = 3000;
+        this.vida = 4000;
         this.game = game;
         this.x = x;
         this.label = label;

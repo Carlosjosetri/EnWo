@@ -38,6 +38,7 @@ public class Gui extends JFrame {
     public int contexplo = 46;
     public int y;
     public int vida = 5;
+    public int Damage=5;
     public int vidarelativa = 100;
     public boolean rellenar = false;
     public Container container = getContentPane();
@@ -130,7 +131,7 @@ public class Gui extends JFrame {
     }
 
     private void move() {
-        if (System.nanoTime() - Monitos.lastDuckTime >= Monitos.timeBetweenDucks * 8) {
+        if (System.nanoTime() - Monitos.lastDuckTime >= Monitos.timeBetweenDucks * 4) {
 
             // Here we create new duck and add it to the array list.
             y = random.nextInt(600);
@@ -142,7 +143,7 @@ public class Gui extends JFrame {
 
             Monitos.lastDuckTime = System.nanoTime();
         }
-        if (cont == 3 && jefevivo == false) {
+        if (cont == 7 && jefevivo == false) {
             jefevivo = true;
 
         }
