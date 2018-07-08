@@ -21,6 +21,8 @@ import GameObjects.ClickListener;
 import GameObjects.Escenario;
 import GameObjects.Jefe;
 import GameObjects.Moneda;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 @SuppressWarnings("serial")
@@ -42,7 +44,7 @@ public class Gui extends JFrame {
     public int vida = 8;
     public int moneditas = 0;
     public int Damage = 1;
-    public int vidarelativa = 100;
+    public int vidajefe = 700;
     public boolean rellenar = false;
     public Container container = getContentPane();
 
@@ -50,7 +52,26 @@ public class Gui extends JFrame {
         super();                    // usamos el contructor de la clase padre JFrame
         configurarVentana();        // configuramos la ventana
         inicializarComponentes();
+     		addKeyListener(new KeyListener() {
+	
 
+            @Override
+            public void keyTyped(KeyEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+               Character.keyPressed(e);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            Character.keyReleased(e);
+            }
+		});
+		setFocusable(true);
+        
     }
 
     private void configurarVentana() {
@@ -135,12 +156,12 @@ public class Gui extends JFrame {
         escenario = new ArrayList<Escenario>();
         labels[24].setBounds(1010, -70, 400, 400);
         labels[47].setBounds(1010, -70, 400, 400);
-        jefe = new Jefe(this, labels[47], 960, labels[24]);
+        jefe = new Jefe(this, labels[47], 960, labels[24],vidajefe);
 
     }
 
     public void move() {
-        if (System.nanoTime() - Monitos.lastDuckTime >= Monitos.timeBetweenDucks * 4) {
+        if (System.nanoTime() - Monitos.lastTime >= Monitos.timeBetween *4) {
 
             // Here we create new duck and add it to the array list.
             y = random.nextInt(600);
@@ -151,11 +172,11 @@ public class Gui extends JFrame {
             labels[cont2 + 47].setBounds(2345, y, 200, 200);
             labels[cont2 + 47].setVisible(true);
             monedas.add(new Moneda(this, y, labels[cont2 + 47]));
-            System.out.println(cont2 + 47);
+            
             cont += 1;
             cont2 += 1;
 
-            Monitos.lastDuckTime = System.nanoTime();
+            Monitos.lastTime = System.nanoTime();
         }
 
         if (cont == 7 && jefevivo == false) {

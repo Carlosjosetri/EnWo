@@ -27,8 +27,8 @@ public class Jefe {
     public static long timeBetweenDucks2 = 1000000000L / 2;
     public static long lastDuckTime2 = 0;
 
-    public Jefe(Gui game, JLabel label, int x, JLabel label2) {
-        this.vida = 1400;
+    public Jefe(Gui game, JLabel label, int x, JLabel label2,int vida) {
+        this.vida = vida;
         this.game = game;
         this.x = x;
         this.label = label;

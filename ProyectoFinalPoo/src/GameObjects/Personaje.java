@@ -8,6 +8,7 @@ package GameObjects;
 import Imagenes.Gui;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class Personaje {
     private static final int HEIGHT = 90;
     int x = 0;
     int xa = 0;
+    int xb = 0;
     int y = 500;
     int ya = 500;
     int m = 0;
@@ -152,16 +154,36 @@ public class Personaje {
             }
          
         }
-
+                                label.setLocation(label.getX() + xb, label.getY());
+                                label2.setLocation(label2.getX() + xb, label2.getY());
+                                x = x + xb;
     }
 
-    public void move2(MouseEvent evento) {
 
-//	x=evento.getX();
-//        y=evento.getYOnScreen();
-//            System.out.println(evento.getPoint());
-    }
+	public void keyReleased(KeyEvent e) {
+		xb=0;
+	}
 
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_LEFT){
+                              xb=-1;
+                }
+             
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+                             xb=1;
+                }
+		if (e.getKeyCode() == KeyEvent.VK_UP){
+                    
+                }
+              
+             
+		if (e.getKeyCode() == KeyEvent.VK_DOWN){
+                    
+                }
+		
+                 
+               
+	}
     public void paint(Graphics2D g) {
         g.fillRect(x + 60, y, WITH, HEIGHT);
     }

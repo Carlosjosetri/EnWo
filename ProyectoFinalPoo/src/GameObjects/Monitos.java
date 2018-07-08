@@ -20,10 +20,9 @@ public class Monitos {
          public JLabel label;
          public JLabel golpe;
          public int flag;
-public static long timeBetweenDucks = 1000000000L / 2;
-public static long lastDuckTime = 0;
-public static long timeBetweenDucks2 = 1000000000L / 2;
-public static long lastDuckTime2 = 0;
+public static long timeBetween = 1000000000L / 2;
+public static long lastTime = 0;
+
 	public Monitos(Gui game,int y,JLabel label,JLabel golpe) {
             
 		this.game= game;
