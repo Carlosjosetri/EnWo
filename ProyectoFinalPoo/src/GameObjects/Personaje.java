@@ -8,10 +8,10 @@ package GameObjects;
 import Imagenes.Gui;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
+
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
+
 import javax.swing.JLabel;
 
 public class Personaje {
@@ -137,20 +137,20 @@ public class Personaje {
         if (disparar) {
             if (recargar) {
                 disparos.add(new PlayerShoot(getGame(), y, x, getGame().CrearDisparos()));
-                System.out.println("boom");
+               
                 disparar = false;
                 recargar = false;
+            }else{
+                disparar = false;
             }
+            
         }
         for (int i = 0; i < disparos.size(); i++) {
             disparos.get(i).move();
             if (disparos.get(i).x >= 1200) {
                 disparos.remove(i);
             }
-            if (disparos.get(i).label == null) {
-                disparos.clear();
-                disparos.remove(i);
-            }
+         
         }
 
     }

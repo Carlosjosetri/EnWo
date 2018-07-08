@@ -20,26 +20,40 @@ public class Jefe {
     int ya = 1;
     private Gui game;
     public JLabel label;
+    public JLabel label2;
+    public boolean golpeado;
     public static long timeBetweenDucks = 1000000000L / 2;
     public static long lastDuckTime = 0;
     public static long timeBetweenDucks2 = 1000000000L / 2;
     public static long lastDuckTime2 = 0;
 
-    public Jefe(Gui game, JLabel label, int x) {
-        this.vida = 2000;
+    public Jefe(Gui game, JLabel label, int x, JLabel label2) {
+        this.vida = 3000;
         this.game = game;
         this.x = x;
         this.label = label;
+        this.label2 = label2;
+        golpeado=false;
     }
 
     public void move() {
 
         label.setLocation(x, y);
-
+        label2.setLocation(x, y); 
+        label2.setVisible(golpeado);
+        
+        
+       
         if (x > 600) {
             x = x - 1;
         }
-
+        	if (y < -70)
+			ya = 1;
+		if (y  > 400)
+			ya = -1;
+                y = y + ya;
+      
+                
     }
 
     private boolean collision() {

@@ -10,7 +10,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import javax.swing.JLabel;
 
-public class Monitos {
+public class ataquejefe {
 	private static final int DIAMETER = 55;
 	public int x = 1000;
 	int y = 0;
@@ -24,7 +24,7 @@ public static long timeBetweenDucks = 1000000000L / 2;
 public static long lastDuckTime = 0;
 public static long timeBetweenDucks2 = 1000000000L / 2;
 public static long lastDuckTime2 = 0;
-	public Monitos(Gui game,int y,JLabel label,JLabel golpe) {
+	public ataquejefe(Gui game,int y,JLabel label,JLabel golpe) {
             
 		this.game= game;
                 this.y=y;
@@ -49,9 +49,7 @@ public static long lastDuckTime2 = 0;
 		}
 		if (collision()==false){
                   if(flag==2){
-                       game.getLabels()[36+game.vida-1].setVisible(false);
                       game.vida-=1;
-                     
                       System.out.println(game.vida);
                       flag=0;
                       if(game.vida<=0){

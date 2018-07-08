@@ -20,6 +20,7 @@ public class PlayerShoot {
     private Gui game;
     public JLabel label;
 
+
     public int flag;
 
     public PlayerShoot(Gui game, int y, int x, JLabel label) {
@@ -27,6 +28,7 @@ public class PlayerShoot {
         this.game = game;
         this.y = y;
         this.label = label;
+      
         this.x = x;
 
     }
@@ -36,10 +38,14 @@ public class PlayerShoot {
         label.setLocation(x + 20, y - 100);
         if (collision()) {
             game.jefe.vida -= 5;
+           game.jefe.golpeado=true;
             if (game.jefe.vida <= 0) {
                 game.Victory();
             }
+        }else{
+           game.jefe.golpeado=false;  
         }
+          
 
     }
 
