@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Imagenes;
+package EnWo.game;
 
 import java.awt.Container;
 import java.awt.Graphics;
@@ -15,12 +15,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import GameObjects.Monitos;
-import GameObjects.Personaje;
-import GameObjects.ClickListener;
-import GameObjects.Escenario;
-import GameObjects.Jefe;
-import GameObjects.Moneda;
+import EnWo.game.gameObjects.Monitos;
+import EnWo.game.gameObjects.Personaje;
+import EnWo.game.gameObjects.ClickListener;
+import EnWo.game.gameObjects.Escenario;
+import EnWo.game.gameObjects.Jefe;
+import EnWo.game.gameObjects.Moneda;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -52,8 +52,7 @@ public class Gui extends JFrame {
         super();                    // usamos el contructor de la clase padre JFrame
         configurarVentana();        // configuramos la ventana
         inicializarComponentes();
-     		addKeyListener(new KeyListener() {
-	
+        addKeyListener(new KeyListener() {
 
             @Override
             public void keyTyped(KeyEvent e) {
@@ -62,16 +61,16 @@ public class Gui extends JFrame {
 
             @Override
             public void keyPressed(KeyEvent e) {
-               Character.keyPressed(e);
+                Character.keyPressed(e);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-            Character.keyReleased(e);
+                Character.keyReleased(e);
             }
-		});
-		setFocusable(true);
-        
+        });
+        setFocusable(true);
+
     }
 
     private void configurarVentana() {
@@ -85,60 +84,60 @@ public class Gui extends JFrame {
         labels = new JLabel[70];
 
         labels[24] = new JLabel();
-        labels[24].setIcon(new ImageIcon(getClass().getResource("explo" + ".gif")));
+        labels[24].setIcon(new ImageIcon("src\\EnWo\\vista\\img\\explo.gif"));
         container.add(labels[24]);
 
         labels[47] = new JLabel();
-        labels[47].setIcon(new ImageIcon(getClass().getResource("gorilla" + ".gif")));
+        labels[47].setIcon(new ImageIcon("src\\EnWo\\vista\\img\\gorilla.gif"));
 
         container.add(labels[47]);
 
         labels[14] = new JLabel();
 
-        labels[14].setIcon(new ImageIcon(getClass().getResource("megar" + ".gif")));
+        labels[14].setIcon(new ImageIcon("src\\EnWo\\vista\\img\\megar.gif"));
         labels[14].setBounds(10, 400, 200, 200);
         container.add(labels[14]);
 
         labels[0] = new JLabel();
 
-        labels[0].setIcon(new ImageIcon(getClass().getResource("mega" + ".gif")));
+        labels[0].setIcon(new ImageIcon("src\\EnWo\\vista\\img\\mega.gif"));
         labels[0].setBounds(10, 400, 200, 200);
         container.add(labels[0]);
         Character.setlabel(labels[0]);
         Character.setLabel2(labels[14]);
         for (int i = 1; i < 10; i++) {
             labels[i] = new JLabel();
-            labels[i].setIcon(new ImageIcon(getClass().getResource("mon" + ".gif")));
+            labels[i].setIcon(new ImageIcon("src\\EnWo\\vista\\img\\mon.gif"));
 
             container.add(labels[i]);
         }
         for (int i = 15; i < 24; i++) {
             labels[i] = new JLabel();
-            labels[i].setIcon(new ImageIcon(getClass().getResource("vidap" + ".gif")));
+            labels[i].setIcon(new ImageIcon("src\\EnWo\\vista\\img\\vidap.gif"));
 
             container.add(labels[i]);
         }
         for (int i = 25; i < 36; i++) {
             labels[i] = new JLabel();
-            labels[i].setIcon(new ImageIcon(getClass().getResource("shoot" + ".png")));
+            labels[i].setIcon(new ImageIcon("src\\EnWo\\vista\\img\\shoot.png"));
             labels[i].setBounds(100, 2000, 400, 400);
             container.add(labels[i]);
         }
         for (int i = 36; i < 36 + vida; i++) {
             labels[i] = new JLabel();
-            labels[i].setIcon(new ImageIcon(getClass().getResource("cora" + ".gif")));
+            labels[i].setIcon(new ImageIcon("src\\EnWo\\vista\\img\\cora.gif"));
             labels[i].setBounds(10 + (i - 36) * 20, -150, 400, 400);
             container.add(labels[i]);
         }
         for (int i = 48; i < 58; i++) {
             labels[i] = new JLabel();
-            labels[i].setIcon(new ImageIcon(getClass().getResource("Coin" + ".gif")));
+            labels[i].setIcon(new ImageIcon("src\\EnWo\\vista\\img\\Coin.gif"));
 
             container.add(labels[i]);
         }
         for (int i = 67; i < 70; i++) {
             labels[i] = new JLabel();
-            labels[i].setIcon(new ImageIcon(getClass().getResource("jungle" + ".jpg")));
+            labels[i].setIcon(new ImageIcon("src\\EnWo\\vista\\img\\jungle.jpg"));
             labels[i].setBounds(0, 0, 3000, 600);
             container.add(labels[i]);
         }
@@ -156,12 +155,12 @@ public class Gui extends JFrame {
         escenario = new ArrayList<Escenario>();
         labels[24].setBounds(1010, -70, 400, 400);
         labels[47].setBounds(1010, -70, 400, 400);
-        jefe = new Jefe(this, labels[47], 960, labels[24],vidajefe);
+        jefe = new Jefe(this, labels[47], 960, labels[24], vidajefe);
 
     }
 
     public void move() {
-        if (System.nanoTime() - Monitos.lastTime >= Monitos.timeBetween *4) {
+        if (System.nanoTime() - Monitos.lastTime >= Monitos.timeBetween * 4) {
 
             // Here we create new duck and add it to the array list.
             y = random.nextInt(600);
@@ -172,7 +171,7 @@ public class Gui extends JFrame {
             labels[cont2 + 47].setBounds(2345, y, 200, 200);
             labels[cont2 + 47].setVisible(true);
             monedas.add(new Moneda(this, y, labels[cont2 + 47]));
-            
+
             cont += 1;
             cont2 += 1;
 
@@ -227,12 +226,10 @@ public class Gui extends JFrame {
 
                 monedas.remove(i);
             }
-            if (monedas.get(i).label==null) {
-             
+            if (monedas.get(i).label == null) {
 
                 monedas.remove(i);
             }
-            
 
         }
 
