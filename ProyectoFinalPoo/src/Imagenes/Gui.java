@@ -20,6 +20,12 @@ import GameObjects.Personaje;
 import GameObjects.ClickListener;
 import GameObjects.Escenario;
 import GameObjects.Jefe;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 @SuppressWarnings("serial")
 public class Gui extends JFrame {
@@ -28,21 +34,24 @@ public class Gui extends JFrame {
     public ArrayList<Monitos> balls;
     public ArrayList<Escenario> escenario;
     public Personaje Character = new Personaje(this);
-    public Jefe jefe ;
-    public boolean jefevivo=false;
+    public Jefe jefe;
+    public boolean jefevivo = false;
     private Random random;
     public int cont = 1;
+    public int conttiros = 24;
     public int y;
     public int vida = 3;
     public int vidarelativa = 100;
     public boolean rellenar = false;
+    public Container container = getContentPane();
+    private BufferedImage proyectil;
 
     public Gui() {
         super();                    // usamos el contructor de la clase padre JFrame
         configurarVentana();        // configuramos la ventana
         inicializarComponentes();
 
-}
+    }
 
     private void configurarVentana() {
         this.setTitle("EnWo");
@@ -57,11 +66,10 @@ public class Gui extends JFrame {
 
         labels = new JLabel[40];
 
-        Container container = getContentPane();
         labels[24] = new JLabel();
-            labels[24].setIcon(new ImageIcon(getClass().getResource("gorilla" + ".gif")));
-           
-            container.add(labels[24]);
+        labels[24].setIcon(new ImageIcon(getClass().getResource("gorilla" + ".gif")));
+
+        container.add(labels[24]);
         labels[14] = new JLabel();
 
         labels[14].setIcon(new ImageIcon(getClass().getResource("megar" + ".gif")));
@@ -81,21 +89,25 @@ public class Gui extends JFrame {
 
             container.add(labels[i]);
         }
-             for (int i = 15; i < 24; i++) {
+        for (int i = 15; i < 24; i++) {
             labels[i] = new JLabel();
             labels[i].setIcon(new ImageIcon(getClass().getResource("vidap" + ".gif")));
 
             container.add(labels[i]);
         }
-          
-             
+        for (int i = 25; i < 36; i++) {
+            labels[i] = new JLabel();
+            labels[i].setIcon(new ImageIcon(getClass().getResource("shoot" + ".png")));
+            labels[i].setBounds(100, 2000, 400, 400);
+            container.add(labels[i]);
+        }
+
         for (int i = 37; i < 40; i++) {
             labels[i] = new JLabel();
             labels[i].setIcon(new ImageIcon(getClass().getResource("jungle" + ".jpg")));
             labels[i].setBounds(0, 0, 3000, 600);
             container.add(labels[i]);
         }
-    
 
         // no usamos ningun layout, solo asi podremos dar posiciones a los componentes
         // hacemos que la ventana no sea redimiensionable
@@ -103,41 +115,39 @@ public class Gui extends JFrame {
     }
 
     private void inicializarComponentes() {
+
         random = new Random();
         balls = new ArrayList<Monitos>();
         escenario = new ArrayList<Escenario>();
+        labels[24].setBounds(990, -70, 400, 400);
+        jefe = new Jefe(this, labels[24], 960);
 
     }
 
     private void move() {
-        if (System.nanoTime() - Monitos.lastDuckTime >= Monitos.timeBetweenDucks *8) {
+        if (System.nanoTime() - Monitos.lastDuckTime >= Monitos.timeBetweenDucks * 8) {
 
             // Here we create new duck and add it to the array list.
             y = random.nextInt(600);
             labels[cont].setBounds(3432, y, 100, 100);
-            labels[cont+14].setBounds(2345, y, 200, 200);
-            balls.add(new Monitos(this, y,labels[cont],labels[cont+14]));
+            labels[cont + 14].setBounds(2345, y, 200, 200);
+            balls.add(new Monitos(this, y, labels[cont], labels[cont + 14]));
 
             cont += 1;
-     
-  
+
             Monitos.lastDuckTime = System.nanoTime();
         }
-        if (cont == 9 && jefevivo==false) {
-            System.out.println("holui");
-            labels[24].setBounds(960, -70, 400, 400);
-            jefe=new Jefe(this,labels[24],960);
-            jefevivo=true;
+        if (cont == 3 && jefevivo == false) {
+            jefevivo = true;
+
+        }
+        if (cont == 9 ) {
+
             cont = 1;
         }
-        if (cont == 9 && jefevivo==true) {
-         
-            cont = 1;
+        if (jefevivo == true) {
+            jefe.move();
         }
-        if ( jefevivo==true) {
-         jefe.move();
-        }
-        
 
         if (rellenar == false) {
             escenario.add(new Escenario(this, 0, labels[37]));
@@ -172,19 +182,34 @@ public class Gui extends JFrame {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         /// POR SI SE QUIERE REVISAR HIT BOX DESCOMENTAR ESTE FRAGMENTO
-//        for(int i=0;i<balls.size();i++){
+//        for (int i = 0; i < balls.size(); i++) {
 //            balls.get(i).paint(g2d);
 //        }
-//      Character.paint(g2d);
-//if(jefevivo==true){
-//    jefe.paint(g2d);
-//}
-      
+//        Character.paint(g2d);
+//        if (jefevivo == true) {
+//            jefe.paint(g2d);
+//        }
+//        for (int i = 0; i < Character.getDisparos().size(); i++) {
+//            Character.getDisparos().get(i).paint(g2d);
+//        }
+    }
+
+    public JLabel CrearDisparos() {
+        conttiros += 1;
+        labels[conttiros].setBounds(-234, 4000, 200, 200);
+        if (conttiros >= 35) {
+            conttiros = 25;
+        }
+        return labels[conttiros];
     }
 
     public void gameOver() {
         JOptionPane.showMessageDialog(this, "Game Over", "Game Over", JOptionPane.YES_NO_OPTION);
-
+this.dispose();
+    }
+    public void Victory() {
+        JOptionPane.showMessageDialog(this, "VICTORY", "YOU WIN", JOptionPane.YES_NO_OPTION);
+this.dispose();
     }
 
     public static void main(String[] args) throws InterruptedException {
