@@ -35,10 +35,11 @@ public class PlayerShoot {
 
     public void move() {
         x = x + 1;
-        label.setLocation(x + 20, y - 100);
+        label.setLocation(x , y - 100);
         if (collision()) {
             game.jefe.vida -= Damage;
            game.jefe.golpeado=true;
+            
             if (game.jefe.vida <= 0) {
                 game.Victory();
             }

@@ -10,8 +10,8 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import javax.swing.JLabel;
 
-public class Monitos {
-	private static final int DIAMETER = 55;
+public class Moneda {
+	private static final int DIAMETER = 100;
 	public int x = 1000;
 	int y = 0;
 	int xa = -1;
@@ -24,7 +24,7 @@ public static long timeBetweenDucks = 1000000000L / 2;
 public static long lastDuckTime = 0;
 public static long timeBetweenDucks2 = 1000000000L / 2;
 public static long lastDuckTime2 = 0;
-	public Monitos(Gui game,int y,JLabel label,JLabel golpe) {
+	public Moneda(Gui game,int y,JLabel label) {
             
 		this.game= game;
                 this.y=y;
@@ -37,34 +37,28 @@ public static long lastDuckTime2 = 0;
 		if (x + xa > game.getWidth() - DIAMETER)
                     
 			xa = -3;
-		if (y + ya < 0)
-			ya = 1;
-		if (y + ya > game.getHeight() - DIAMETER)
-			ya = -3;
-//			
+			
 		if (collision()){
-                     golpe.setLocation(x + xa-30, y + ya-50);
+                     label.setLocation(3000, y + ya-50);
+                     label.setVisible(false);
                   flag=2;
                   
 		}
 		if (collision()==false){
                   if(flag==2){
-                       game.getLabels()[36+game.vida-1].setVisible(false);
-                      game.vida-=1;
-                     
-                     
+                       
+                      game.moneditas+=1;
+            
                       flag=0;
-                      if(game.vida<=0){
-                          game.gameOver();
-                      }
+                   
                   }
                   
 		}
-             
-                label.setLocation(x + xa-30, y + ya-50);
+     
+                label.setLocation(x+20, y-100);
                 
 		x = x + xa;
-		y = y + ya;
+//		y = y + ya;
 	}
 
 	private boolean collision() {
