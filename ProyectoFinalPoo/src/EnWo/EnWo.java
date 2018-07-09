@@ -10,7 +10,7 @@ public class EnWo {
      * @param args the command line arguments
      */
     public static void main(String... args) throws InterruptedException {
-//        Gui.jugar();
+        Gui.jugar();
 //        new Home().setVisible(true);
 //        new LogIn().setVisible(true);
     }

@@ -1,5 +1,6 @@
 package EnWo.vista;
 
+import EnWo.game.Gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -7,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -90,8 +93,13 @@ public class Home extends JFrame {
         jugar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                close();
-                new Juego().setVisible(true);
+                try {
+                    Gui.jugar();
+//                close();
+//                new Juego().setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             }
         }
