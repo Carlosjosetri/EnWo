@@ -4,7 +4,6 @@ import EnWo.Admin;
 import EnWo.data.dao.UsuariosDAO;
 import EnWo.data.entidades.Usuario;
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -14,9 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 /**
  *
@@ -33,20 +30,17 @@ public class infoPlayer extends JFrame {
         });
     }
 
-    // PUNTOS DE REFERENCIA Y DIMENSIONES
-    private static final int xA = 50, y4 = 250, w = 130, h = 30;
-
     // CREAN INSTANCIAS DE TODOS LOS ELEMENTOS A USAR
     private JLabel nombre = new JLabel(findNombre()), puntaje = new JLabel("" + Admin.getInstance().getJugadorActual().getPuntajeMax());
-
     private JButton regresar = new JButton("Regresar");
     private JPanel panel = new JPanel();
-    private JLabel lblBackgroundImage = new JLabel(), pJugador = new JLabel(), bNombre = new JLabel(), bPuntaje = new JLabel();
+    private JLabel lblBackgroundImage = new JLabel(), pJugador = new JLabel(),
+            bNombre = new JLabel(), bPuntaje = new JLabel(), bInfoJugador = new JLabel();
 
     public infoPlayer() {
         super("Información del jugador");
 
-        setSize(400, 400);
+        setSize(400, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);// centramos la ventana en la pantalla
@@ -60,12 +54,9 @@ public class infoPlayer extends JFrame {
         lblBackgroundImage.setLayout(new BorderLayout());
 
         pJugador.setIcon(new ImageIcon("src\\EnWo\\vista\\img\\mm.gif"));
+        bInfoJugador.setIcon(new ImageIcon("src\\EnWo\\vista\\img\\bannerPlayerInfo.png"));
         bNombre.setIcon(new ImageIcon("src\\EnWo\\vista\\img\\bannerNombre.png"));
         bPuntaje.setIcon(new ImageIcon("C:src\\EnWo\\vista\\img\\bannerPuntaje.png"));
-
-        regresar.setBounds(xA + 65, y4, w - 25, h);
-
-        panel.add(regresar);
 
         lblBackgroundImage.add(panel);
 
@@ -86,6 +77,8 @@ public class infoPlayer extends JFrame {
         allData.add(Box.createRigidArea(new Dimension(30, 10)));
         allData.add(values);
 
+        vBox1.add(bInfoJugador);
+        vBox1.add(Box.createRigidArea(new Dimension(30, 10)));
         vBox1.add(pJugador);
         vBox1.add(Box.createRigidArea(new Dimension(20, 30)));
         vBox1.add(allData);

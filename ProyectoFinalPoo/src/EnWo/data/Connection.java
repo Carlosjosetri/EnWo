@@ -13,7 +13,7 @@ public class Connection {
     private static final String password = "root";
     private static final String user = "root";
     private static final String driver = "org.mariadb.jdbc.Driver";
-    private static final String url = "jdbc:mariadb://localhost:3306/datosJuego";
+    private static final String url = "jdbc:mariadb://localhost:3306/datosjuego";
 
     private Connection() {
         try {

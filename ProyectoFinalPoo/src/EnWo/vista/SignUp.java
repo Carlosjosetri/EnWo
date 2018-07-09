@@ -52,7 +52,7 @@ public class SignUp extends JFrame {
         setLocationRelativeTo(null);
         setLayout(null);
 //        setLayout(new BorderLayout());
-//        setContentPane(new JLabel(new ImageIcon("C:\\Users\\Tania Orellana\\Documents\\NetBeansProjects\\VW2DYbL0.png")));
+//        setContentPane(new JLabel(new ImageIcon("src\\EnWo\\vista\\img\\VW2DYbL0.png")));
 //        setLayout(new FlowLayout());
 
         msj.setBounds(xA - 30, y0, 350, h);

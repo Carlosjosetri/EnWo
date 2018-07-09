@@ -50,7 +50,7 @@ public class Juego extends JFrame {
         statistics.setBounds(xB + 30, y3, w - 25, h);
 
         setLayout(new BorderLayout());
-        setContentPane(new JLabel(new ImageIcon("C:\\Users\\Tania Orellana\\Documents\\NetBeansProjects\\VW2DYbL.png")));
+        setContentPane(new JLabel(new ImageIcon("src\\EnWo\\vista\\img\\VW2DYbL.png")));
         setLayout(new FlowLayout());
 
         Container container = getContentPane();

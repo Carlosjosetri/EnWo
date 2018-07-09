@@ -53,7 +53,7 @@ public class Ranking extends JFrame {
         setLayout(null);
 
 //        setLayout(new BorderLayout());
-//        setContentPane(new JLabel(new ImageIcon("C:\\Users\\Tania Orellana\\Documents\\NetBeansProjects\\VW2DYbL0.png")));
+//        setContentPane(new JLabel(new ImageIcon("src\\EnWo\\vista\\img\\VW2DYbL0.png")));
 //        setLayout(new FlowLayout());
         goHome.setBounds(xA, y1, w, h);
 
@@ -64,7 +64,7 @@ public class Ranking extends JFrame {
 
         llenarTabla();
 //        bg = new JLabel();
-//        bg.setIcon(new ImageIcon("C:\\Users\\Tania Orellana\\Documents\\NetBeansProjects\\VW2DYbL0.png"));
+//        bg.setIcon(new ImageIcon("src\\EnWo\\vista\\img\\VW2DYbL0.png"));
 //        bg.setBounds(0, 0, 500, 600);
 //        container.add(bg);
         Container container = getContentPane();
