@@ -1,17 +1,18 @@
 package EnWo.vista;
 
-import EnWo.data.dao.UsuariosDAO;
-import EnWo.data.entidades.Usuario;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -19,6 +20,12 @@ import javax.swing.JTextField;
  * @author Tania Orellana
  */
 public class Home extends JFrame {
+
+    private JPanel panel = new JPanel();
+    private JLabel lblBackgroundImage = new JLabel();
+    /* BOTONES */ public JButton infoPlayer = new JButton("Info player"),
+            jugar = new JButton("Iniciar juego"),
+            ranking = new JButton("Ver ranking");
 
     public static void main(String... args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -29,38 +36,42 @@ public class Home extends JFrame {
         });
     }
 
-    // PUNTOS DE REFERENCIA Y DIMENSIONES
-    private static final int xA = 50, xB = 145, y1 = 130, y2 = 170, y3 = 220, w = 130, h = 30;
-
-    // CREAN INSTANCIAS DE TODOS LOS ELEMENTOS A USAR
-    /* LABELS */ public JLabel user_L = new JLabel("Usuario: "), password_L = new JLabel("Contraseña: ");
-    /* TEXT FIELDS */ public JTextField user_TF = new JTextField(), password_TF = new JTextField();
-    /* BOTONES */ public JButton infoPlayer = new JButton("Info player"), jugar = new JButton("Iniciar juego"), tienda = new JButton("Tienda");
-
-    // CONSTRUCTOR: SE INICIALIZA TODO. SUPER(<NOMBRE_VENTANA>. SETDEFAULTCLOSEOPERATION(JFRAME.EXIT_ON_CLOSE))
     public Home() {
         super("EnWo: Home");
+
+        setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        setLocationRelativeTo(null);
-        setLayout(null);
-//        setLayout(new BorderLayout());
-//        setContentPane(new JLabel(new ImageIcon("src\\EnWo\\vista\\img\\VW2DYbL0.png")));
-//        setLayout(new FlowLayout());
+        setResizable(false);
+        setLocationRelativeTo(null);
+        panel.setOpaque(false);
+        panel.setLayout(new FlowLayout());
 
-        user_L.setBounds(xA + 24, y1, w - 30, h);
-        password_L.setBounds(xA, y2, w - 30, h);
-        user_TF.setBounds(xB, y1, w, h);
-        password_TF.setBounds(xB, y2, w, h);
-        infoPlayer.setBounds(xA + 10, y3, w - 25, h);
-        tienda.setBounds(xB + 30, y3, w - 25, h);
-        jugar.setBounds(xA, y3 + 50, w - 25, h);
+        lblBackgroundImage.setLayout(new FlowLayout());
 
-        Container container = getContentPane();
-        container.add(tienda);
-        container.add(infoPlayer);
-        container.add(jugar);
+        lblBackgroundImage.setIcon(new ImageIcon("src\\EnWo\\vista\\img\\bg3.jpg"));
+        lblBackgroundImage.setLayout(new BorderLayout());
 
-        setSize(900, 600);
+        panel.add(infoPlayer);
+        panel.add(jugar);
+        panel.add(ranking);
+
+        lblBackgroundImage.add(panel);
+
+        add(lblBackgroundImage);
+
+        Box vBox = Box.createVerticalBox();
+
+        vBox.add(Box.createRigidArea(new Dimension(35, 100)));
+        vBox.add(infoPlayer);
+        vBox.add(Box.createRigidArea(new Dimension(10, 20)));
+
+        vBox.add(jugar);
+        vBox.add(Box.createRigidArea(new Dimension(10, 20)));
+
+        vBox.add(ranking);
+        vBox.add(Box.createRigidArea(new Dimension(35, 35)));
+        panel.add(vBox);
+
         events();
     }
 
@@ -69,9 +80,9 @@ public class Home extends JFrame {
         infoPlayer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                    close();
-                        new infoPlayer().setVisible(true);
-                    
+                close();
+                new infoPlayer().setVisible(true);
+
             }
         }
         );
@@ -79,29 +90,12 @@ public class Home extends JFrame {
         jugar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                    close();
-                        new Juego().setVisible(true);
-                    
-            }
-        }
-        );
-
-        tienda.addActionListener(
-                new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae
-            ) {
-                // NUEVA VENTANA DE REGISTRO
-                new Tienda().setVisible(true);
                 close();
+                new Juego().setVisible(true);
+
             }
         }
         );
-    }
-
-    public static void limpiarCampos(JTextField user_TF, JTextField password_TF) {
-        user_TF.setText("");
-        password_TF.setText("");
     }
 
     public void close() {

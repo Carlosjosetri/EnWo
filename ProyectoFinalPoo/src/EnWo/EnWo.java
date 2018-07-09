@@ -1,7 +1,8 @@
 package EnWo;
 
 import EnWo.game.Gui;
-import EnWo.vista.SignUp;
+import EnWo.vista.Home;
+import EnWo.vista.LogIn;
 
 public class EnWo {
 
@@ -10,7 +11,8 @@ public class EnWo {
      */
     public static void main(String... args) throws InterruptedException {
 //        Gui.jugar();
-        new SignUp().setVisible(true);
+//        new Home().setVisible(true);
+//        new LogIn().setVisible(true);
     }
 
 }

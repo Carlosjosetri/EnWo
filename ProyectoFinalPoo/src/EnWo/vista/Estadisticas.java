@@ -104,7 +104,7 @@ public class Estadisticas extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae
             ) {
-                // NUEVA VENTANA DE REGISTRO
+                // NUEVA VENTANA DE RANKING
                 new Ranking().setVisible(true);
                 close();
             }

@@ -1,18 +1,19 @@
 package EnWo.vista;
 
-import EnWo.data.dao.UsuariosDAO;
-import EnWo.data.entidades.Usuario;
+import EnWo.game.Gui;
 import java.awt.BorderLayout;
-import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.JPanel;
 
 /**
  *
@@ -20,45 +21,52 @@ import javax.swing.JTextField;
  */
 public class Juego extends JFrame {
 
+    static Gui gui = new Gui();
+    private JPanel panel = new JPanel();
+    private JLabel lblBackgroundImage = new JLabel();
+    private JButton statistics = new JButton("Ver estadísticas de juego");
+
     public static void main(String... args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Juego().setVisible(true);
+                new Home().setVisible(true);
             }
         });
     }
 
-    // PUNTOS DE REFERENCIA Y DIMENSIONES
-    private static final int xA = 50, xB = 145, y1 = 30, y2 = 70, y3 = 120, w = 130, h = 30;
-
-
-    // CREAN INSTANCIAS DE TODOS LOS ELEMENTOS A USAR
-    /* LABELS */ public JLabel user_L = new JLabel("Usuario: "), password_L = new JLabel("Contraseña: ");
-    /* TEXT FIELDS */ public JTextField user_TF = new JTextField(), password_TF = new JTextField();
-    /* BOTONES */ public JButton statistics = new JButton("Estadísticas del juego");
-
-    // CONSTRUCTOR: SE INICIALIZA TODO. SUPER(<NOMBRE_VENTANA>. SETDEFAULTCLOSEOPERATION(JFRAME.EXIT_ON_CLOSE))
     public Juego() {
         super("EnWo: Bienvenido a la aventura");
+        setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(null);
-        user_L.setBounds(xA + 24, y1, w - 30, h);
-        password_L.setBounds(xA, y2, w - 30, h);
-        user_TF.setBounds(xB, y1, w, h);
-        password_TF.setBounds(xB, y2, w, h);
-        statistics.setBounds(xB + 30, y3, w - 25, h);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        panel.setOpaque(false);
+        panel.setLayout(new FlowLayout());
 
-        setLayout(new BorderLayout());
-        setContentPane(new JLabel(new ImageIcon("src\\EnWo\\vista\\img\\VW2DYbL.png")));
-        setLayout(new FlowLayout());
+        lblBackgroundImage.setLayout(new FlowLayout());
 
-        Container container = getContentPane();
+        lblBackgroundImage.setIcon(new ImageIcon("src\\EnWo\\vista\\img\\bg0.png"));
+        lblBackgroundImage.setLayout(new BorderLayout());
 
-        container.add(statistics);
+        panel.add(statistics);
 
-        setSize(900, 600);
+        lblBackgroundImage.add(panel);
+
+        add(lblBackgroundImage);
+
+        Box vBox = Box.createVerticalBox();
+        vBox.add(Box.createRigidArea(new Dimension(10, 35)));
+        vBox.add(statistics);
+        vBox.add(Box.createRigidArea(new Dimension(35, 35)));
+        panel.add(vBox);
+//        try {
+//            gui.jugar();
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         events();
+
     }
 
     public void events() {
@@ -73,11 +81,6 @@ public class Juego extends JFrame {
             }
         }
         );
-    }
-
-    public static void limpiarCampos(JTextField user_TF, JTextField password_TF) {
-        user_TF.setText("");
-        password_TF.setText("");
     }
 
     public void close() {

@@ -1,7 +1,6 @@
 package EnWo.data.dao;
 
 import EnWo.data.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 /**

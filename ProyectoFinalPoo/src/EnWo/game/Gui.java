@@ -46,6 +46,7 @@ public class Gui extends JFrame {
     public int Damage = 1;
     public int vidajefe = 700;
     public boolean rellenar = false;
+    public boolean haGanado = false;
     public Container container = getContentPane();
 
     public Gui() {
@@ -56,7 +57,6 @@ public class Gui extends JFrame {
 
             @Override
             public void keyTyped(KeyEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
 
             @Override
@@ -292,6 +292,7 @@ public class Gui extends JFrame {
     }
 
     public void Victory() {
+        this.haGanado = true;
         JOptionPane.showMessageDialog(this, "VICTORY", "YOU WIN", JOptionPane.YES_NO_OPTION);
         this.dispose();
     }
@@ -308,5 +309,4 @@ public class Gui extends JFrame {
             Thread.sleep(6);
         }
     }
-
 }

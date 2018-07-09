@@ -5,6 +5,7 @@
  */
 package EnWo.game.gameObjects;
 
+import EnWo.Admin;
 import EnWo.game.Gui;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -57,6 +58,7 @@ public class Monitos {
                 flag = 0;
                 if (game.vida <= 0) {
                     game.gameOver();
+                    Admin.getInstance().resultadosJuego(game.haGanado, game.moneditas, game.vida, DIAMETER);
                 }
             }
 

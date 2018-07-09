@@ -4,7 +4,6 @@ import EnWo.data.dao.JugadoresDAO;
 import EnWo.data.dao.UsuariosDAO;
 import EnWo.data.entidades.Jugador;
 import EnWo.data.entidades.Usuario;
-import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
