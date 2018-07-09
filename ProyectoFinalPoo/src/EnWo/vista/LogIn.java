@@ -1,21 +1,24 @@
 package EnWo.vista;
 
 import EnWo.Admin;
-import EnWo.data.dao.JugadoresDAO;
 import EnWo.data.dao.UsuariosDAO;
 import EnWo.data.entidades.Jugador;
 import EnWo.data.entidades.Usuario;
 import java.awt.BorderLayout;
-import java.awt.Container;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
+import javax.swing.Box;
+import static javax.swing.Box.createHorizontalBox;
+import static javax.swing.Box.createVerticalBox;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -34,40 +37,72 @@ public class LogIn extends JFrame {
     }
 
     // PUNTOS DE REFERENCIA Y DIMENSIONES
-    private static final int xA = 50, xB = 145, y1 = 130, y2 = 170, y3 = 220, w = 130, h = 30;
-
 
     // CREAN INSTANCIAS DE TODOS LOS ELEMENTOS A USAR
-    /* LABELS */ public JLabel user_L = new JLabel("Usuario: "), password_L = new JLabel("Contraseña: ");
+    /* LABELS */ public JLabel user_L = new JLabel("Usuario:"), password_L = new JLabel("Contraseña:");
     /* TEXT FIELDS */ public JTextField user_TF = new JTextField(), password_TF = new JTextField();
     /* BOTONES */ public JButton logIn = new JButton("Inicio sesión"), signUp = new JButton("Registrarse");
+    private JPanel panel = new JPanel();
+    private JLabel lblBackgroundImage = new JLabel();
+    private JLabel iconGorillaz = new JLabel();
+    private JLabel iconMegamanz = new JLabel();
 
-    // CONSTRUCTOR: SE INICIALIZA TODO. SUPER(<NOMBRE_VENTANA>. SETDEFAULTCLOSEOPERATION(JFRAME.EXIT_ON_CLOSE))
+// CONSTRUCTOR: SE INICIALIZA TODO. SUPER(<NOMBRE_VENTANA>. SETDEFAULTCLOSEOPERATION(JFRAME.EXIT_ON_CLOSE))
     public LogIn() {
         super("EnWo: Inicio de sesión");
+
+        setSize(450, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
         setLocationRelativeTo(null);
-        setLayout(null);
+        panel.setOpaque(false);
+        panel.setLayout(new FlowLayout());
 
-//        setLayout(new BorderLayout());
-//        setContentPane(new JLabel(new ImageIcon("src\\EnWo\\vista\\img\\VW2DYbL0.png")));
-//        setLayout(new FlowLayout());
-        user_L.setBounds(xA + 24, y1, w - 30, h);
-        password_L.setBounds(xA, y2, w - 30, h);
-        user_TF.setBounds(xB, y1, w, h);
-        password_TF.setBounds(xB, y2, w, h);
-        logIn.setBounds(xA + 10, y3, w - 25, h);
-        signUp.setBounds(xB + 30, y3, w - 25, h);
+        lblBackgroundImage.setLayout(new FlowLayout());
 
-        Container container = getContentPane();
-        container.add(user_L);
-        container.add(password_L);
-        container.add(user_TF);
-        container.add(password_TF);
-        container.add(logIn);
-        container.add(signUp);
+        lblBackgroundImage.setIcon(new ImageIcon("src\\EnWo\\vista\\img\\bg0.png"));
+//        lblBackgroundImage.setIcon(new ImageIcon("src\\EnWo\\vista\\img\\bg3.jpg"));
+        iconGorillaz.setIcon(new ImageIcon("src\\EnWo\\vista\\img\\gorillaz.gif"));
+        iconMegamanz.setIcon(new ImageIcon("src\\EnWo\\vista\\img\\megamanz.gif"));
+        lblBackgroundImage.setLayout(new BorderLayout());
 
-        setSize(350, 350);
+        lblBackgroundImage.add(panel);
+
+        add(lblBackgroundImage);
+
+        
+        Box layout = createHorizontalBox();
+        Box campos = createVerticalBox();
+        Box campoUsuario = createHorizontalBox();
+        Box campoContrasenna = createHorizontalBox();
+        Box campoBotones = createHorizontalBox();
+
+        campoUsuario.add(user_L);
+        user_L.setForeground(Color.white);
+        campoUsuario.add(Box.createRigidArea(new Dimension(30, 10)));
+        campoUsuario.add(user_TF);
+
+        campoContrasenna.add(password_L);
+        password_L.setForeground(Color.white);
+        campoContrasenna.add(Box.createRigidArea(new Dimension(30, 10)));
+        campoContrasenna.add(password_TF);
+        campoBotones.add(logIn);
+        campoUsuario.add(Box.createRigidArea(new Dimension(30, 10)));
+        campoBotones.add(signUp);
+
+        campos.add(Box.createRigidArea(new Dimension(10, 50)));
+        campos.add(campoUsuario);
+        campos.add(Box.createRigidArea(new Dimension(10, 20)));
+        campos.add(campoContrasenna);
+        campos.add(Box.createRigidArea(new Dimension(10, 20)));
+        campos.add(campoBotones);
+
+        
+        layout.add(iconGorillaz);
+        layout.add(campos);
+        layout.add(iconMegamanz);
+        
+        panel.add(layout);
         events();
     }
 

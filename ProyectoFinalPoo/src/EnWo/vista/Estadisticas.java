@@ -30,7 +30,6 @@ public class Estadisticas extends JFrame {
     }
 
     // PUNTOS DE REFERENCIA Y DIMENSIONES
-    private static final int xA = 50, xB = 145, y1 = 30, y2 = 70, y3 = 120, w = 130, h = 30;
 
     // CREAN INSTANCIAS DE TODOS LOS ELEMENTOS A USAR
     private JLabel haGanado = new JLabel(Admin.getInstance().getHaGanado() ? "Sí" : "No"),
@@ -70,6 +69,7 @@ public class Estadisticas extends JFrame {
 
         Box vBox = Box.createVerticalBox();
         Box hBox1 = Box.createHorizontalBox(), hBox2 = Box.createHorizontalBox(), hBox3 = Box.createHorizontalBox();
+        
         vBox.add(pJugador);
         vBox.add(Box.createRigidArea(new Dimension(10, 20)));
         hBox1.add(bEsGanador);
