@@ -19,7 +19,7 @@ public class PersonajesxHabilidadDAO extends BaseDAO<PXH> {
 
     public PersonajesxHabilidadDAO() {
         table = new TableData("personajeXhabilidad", "_id",
-                new String[]{"PkFkpersonaje", "PkFkHabilidad"});
+                new String[]{"idPersonaje", "idHabilidad"});
     }
 
     @Override
