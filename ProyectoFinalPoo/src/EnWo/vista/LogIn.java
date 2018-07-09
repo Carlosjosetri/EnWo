@@ -57,7 +57,6 @@ public class LogIn extends JFrame {
         setLocationRelativeTo(null);
         panel.setOpaque(false);
         panel.setLayout(new FlowLayout());
-
         lblBackgroundImage.setLayout(new FlowLayout());
 
         lblBackgroundImage.setIcon(new ImageIcon("src\\EnWo\\vista\\img\\bg0.png"));
